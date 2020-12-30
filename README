@@ -1,0 +1,76 @@
+###Dependency###
+python 3.7
+Stellargraph version 1.0.0: https://github.com/stellargraph/stellargraph
+Ampligraph version 1.3.2: https://github.com/Accenture/AmpliGraph
+rescal: https://github.com/mnick/rescal.py
+
+#################################################################################################################
+For Supervised regression model run the script
+supervised_regression.py
+
+#################################################################################################################
+For Semi Supervised regression model 
+
+Run the script semi_supervised_regression_using_graphs.py
+By default the script runs for Harmonic Function
+to run heat diffusion enable the line below and disable others
+    predicted_values = get_hd_scores(graph_data,train_nodes,test_nodes,alpha = 1.0)
+
+to run the local and global consistency enable the line below and disable others
+    predicted_values = get_lgc_scores(graph_data,train_nodes,test_nodes,alpha = 0.5)
+  
+to run the katz diffusion enable the line below and disable others
+	predicted_values = get_katz_scores(graph_data,train_nodes,test_nodes,alpha = 0.001)
+
+to run the personalized enable the line below and disable others
+	predicted_values = get_personalized_pagerank_scores(graph_data,train_nodes,test_nodes,alpha = 0.85)
+
+    
+#################################################################################################################
+For Matrix Factorization
+
+Run the script: matrix_factorization.py
+By default the script runs for NMF
+to run the SVD or PMF uncomment the line inside "matrix_factorization.py" 
+	for SVD score = perform_svd_matrix_reconstruction(B,train_id)
+        for PMF score = perform_pmf_matrix_reconstruction(B,train_id)
+
+#################################################################################################################
+For graph emdedding method such as RGCN and Node2Vec uses the Stellargraph package and their input graph file format is different so all
+the script is seperately presented. Each of these script produces file that can be used for the regression task
+
+###Extracting Embedding using RGCN use script############
+	rgcn_embedding_extraction.py
+
+###Extracting Embedding using RESCAL use script############
+	rescal_embedding_extraction.py
+
+###Extracting Embedding using Node2Vec use script############
+	node2vec_embedding_extraction.py
+
+
+For graph emdedding method such as DistMult,TransE,HolE, and ComplEX uses the Ampligraph package and their input graph file format is different so all the script is seperately presented.
+
+###Extracting Embedding using DistMult use script###########
+	distmult_embedding_extraction.py
+
+###Extracting Embedding using TransE use script###########
+	transe_embedding_extraction.py
+
+
+###Extracting Embedding using HolE use script###########
+	hole_embedding_extraction.py
+
+###Extracting Embedding using CompleX use script###########
+	complex_embedding_extraction.py
+
+
+
+###Once the embedding is learned for the downstream task to run the learned emeddings from these models use the script###########
+	regression_model_for_embeddings.py
+
+###for example to run the embedding learned from RESCAL uncomment the line below 
+	data_emb = np.loadtxt("data/RESCAL_EMB_V1.txt")  from "regression_model_for_embeddings.py" script. The file "RESCAL_EMB_V1.txt" will be created after running "rescal_embedding_extraction.py" script.
+
+
+
