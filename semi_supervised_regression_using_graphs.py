@@ -182,7 +182,7 @@ def innerfold(test_nodes, train_nodes):
     #predicted_values = get_bhd_scores(graph_data,train_nodes,test_nodes,alpha = 1.0)
     #predicted_values = get_lgc_scores(graph_data,train_nodes,test_nodes,alpha = 0.5)
     #predicted_values = get_katz_scores(graph_data,train_nodes,test_nodes,alpha = 0.001)
-    predicted_values = get_personalized_pagerank_scores(graph_data,train_nodes,test_nodes,alpha = 0.85)
+    #predicted_values = get_personalized_pagerank_scores(graph_data,train_nodes,test_nodes,alpha = 0.85)
     mse = mean_squared_error(true_values[test_nodes],predicted_values[test_nodes])
     rmse = math.sqrt(mse)
     print (rmse)
